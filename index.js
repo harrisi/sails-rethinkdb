@@ -10,6 +10,8 @@ module.exports = (function() {
     // Without it, find("a") -> {where: {id: NaN}}
     // With it: find(1) -> {where: {id: "1"}}
 
+    adapterApiVersion: 1,
+
     // to track schema internally
     syncable: true,
 

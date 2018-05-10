@@ -25,7 +25,7 @@ module.exports = (function() {
      * Will open up a new connection using the configuration provided and store the DB
      * object to run commands off of. This creates a new pool for each connection config.
      */
-    registerConnection(options, tables, cb) {
+    registerDatastore(options, tables, cb) {
       if(!options.identity) return cb(new Error('Connection is missing an identity.'))
       if(connections[options.identity]) return cb(new Error('Connection is already registered.'))
 

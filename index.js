@@ -93,9 +93,10 @@ module.exports = (function() {
      *
      * Find all matching documents in a colletion.
      */
-    find(connectionName, tableName, query, cb) {
-      debug("find", tableName, query)
-      connections[connectionName].tables[tableName].find(query, cb)
+    find(connectionName, data, cb) {
+      debug('find', arguments)
+      // debug("find", tableName, query)
+      connections[connectionName].tables[data.using].find(data.criteria, cb)
     },
 
     /**
@@ -128,17 +129,22 @@ module.exports = (function() {
       connections[connectionName].tables[tableName].count(query, cb)
     },
 
+    drop(connectionName, tableName, cb) {
+      debug("drop", tableName);
+      connections[connectionName].dropTable(tableName);
+    },
+
     /** TODO
      * Join
      *
      * Peforms a join between 2-3 mongo collections when Waterline core
      * needs to satisfy a `.populate()`.
      */
-    join(connectionName, tableName, query, cb) {
-      // {where: null, joins: [{ parent: 'users', parentKey: 'id', child: 'posts', childKey: 'user', select: [Object], alias: 'posts', removeParentKey: false, model: false, collection: true, q: [Object] }] }
-      debug("join %o %o %o", tableName, query, query.joins[0].select, query.joins[0].criteria)
-      connections[connectionName].tables[tableName].join(query, cb)
-    },
+    // join(connectionName, tableName, query, cb) {
+    //   // {where: null, joins: [{ parent: 'users', parentKey: 'id', child: 'posts', childKey: 'user', select: [Object], alias: 'posts', removeParentKey: false, model: false, collection: true, q: [Object] }] }
+    //   debug("join %o %o %o", tableName, query, query.joins[0].select, query.joins[0].criteria)
+    //   connections[connectionName].tables[tableName].join(query, cb)
+    // },
 
 
     /** TODO
